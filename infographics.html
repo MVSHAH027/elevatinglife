@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>મુમુક્ષુ પ્રેરણા: એક દ્રશ્ય માર્ગદર્શિકા</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Gujarati', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        .flow-step {
+            border: 2px solid #4f46e5; /* Indigo */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            background-color: #e0e7ff; /* Indigo-100 */
+            color: #3730a3; /* Indigo-800 */
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #4f46e5; /* Indigo */
+            align-self: center;
+            margin: 0.5rem 0;
+        }
+         .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .nav-link {
+            color: #4f46e5; /* Indigo */
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav-link:hover {
+            background-color: #e0e7ff; /* Indigo-100 */
+            color: #3730a3; /* Indigo-800 */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-100 via-indigo-50 to-purple-100 text-slate-800 leading-relaxed">
+
+
+    <main class="container mx-auto px-4 py-8">
+
+        <section id="intro" class="text-center mb-16 pt-12">
+            <h1 class="text-4xl sm:text-5xl font-bold text-indigo-700 mb-4">મુમુક્ષુ પ્રેરણા</h1>
+            <p class="text-xl text-slate-700 mb-6">આત્મિક ઉન્નતિના પંથે પ્રયાણ કરતા શોધક માટે દ્રશ્ય માર્ગદર્શિકા</p>
+            
+        </section>
+
+        <section id="effort" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-indigo-700 text-center mb-8">પુરુષાર્થ અને સંયમ: સફળતાનો પાયો</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="stat-card">
+                    <h3 class="text-2xl font-semibold text-amber-600 mb-3">તીવ્ર પુરુષાર્થનું મહત્વ</h3>
+                    <p class="text-slate-600 mb-4">સંયમની પ્રાપ્તિ તીવ્ર પુરુષાર્થ વિના અશક્ય છે. જો કોઈને સરળતાથી સંયમ પ્રાપ્ત થતો દેખાય, તો તે તેના પૂર્વજન્મના તીવ્ર પુરુષાર્થનું ફળ હોઈ શકે છે, જેમ જંબૂસ્વામીના કિસ્સામાં બન્યું હતું.</p>
+                    <div class="text-center text-5xl text-indigo-500 p-4">🏋️‍♂️</div>
+                    <p class="text-sm text-slate-500 text-center">પ્રયત્ન એ જ પ્રગતિનો માર્ગ છે.</p>
+                </div>
+                <div class="stat-card">
+                     <h3 class="text-2xl font-semibold text-amber-600 mb-3">સત્ત્વ: સિદ્ધિનું મૂલ્ય</h3>
+                    <p class="text-slate-600 mb-4">આધ્યાત્મિક માર્ગ પર આવતી મુશ્કેલીઓ અને મોહમાયાનો સામનો કરવા માટે અતૂટ આંતરિક શક્તિ (સત્ત્વ) અનિવાર્ય છે. આ સત્ત્વ જ સિદ્ધિનું સાચું મૂલ્ય છે. તમારી શુભ ભાવનાઓ ચોક્કસ સફળ થશે.</p>
+                    <div class="text-center text-5xl text-green-500 p-4">🌟</div>
+                    <p class="text-sm text-slate-500 text-center">મક્કમ મનોબળથી જ લક્ષ્યસિદ્ધિ થાય છે.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="attachment" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-indigo-700 text-center mb-8">મોહ-ત્યાગ અને કર્તવ્યપાલન</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="stat-card">
+                    <h3 class="text-2xl font-semibold text-amber-600 mb-3">મોહ છોડવાની પ્રક્રિયા</h3>
+                    <p class="text-slate-600 mb-2">પુત્રમોહ જેવી સાંસારિક આસક્તિઓ છોડવી કઠિન છે. તીવ્ર વૈરાગ્ય અને સંયમપ્રાપ્તિનો પુરુષાર્થ આ મોહને નિર્બળ બનાવે છે. આ પ્રક્રિયા કષ્ટદાયક હોવા છતાં, તેનું અંતિમ પરિણામ પરમ સુખદાયી હોય છે.</p>
+                    <p class="text-slate-600 font-semibold mb-4">"કષ્ટમય પ્રક્રિયા, સુખમય પરિણામ"</p>
+                    <div class="chart-container h-64 sm:h-72">
+                        <canvas id="attachmentImpactChart"></canvas>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-2 text-center">આ ચાર્ટ મોહના પ્રભાવ અને ત્યાગના સંભવિત પરિણામનું કાલ્પનિક નિરૂપણ છે.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-2xl font-semibold text-amber-600 mb-3">માતા-પિતા પ્રત્યે પરમ કર્તવ્ય</h3>
+                    <p class="text-slate-600 mb-4">આપણા પર અનંત ઉપકાર કરનાર માતા-પિતાને આધ્યાત્મિક સુખ આપવું, તેમને અંતરાયના પાપથી બચાવવા, અને તેમના માટે ચારિત્રની સુલભતા તથા સદ્ગતિની પરંપરા સુનિશ્ચિત કરવી એ દરેક સંતાનનું પરમ કર્તવ્ય છે.</p>
+                     <div class="bg-indigo-100 p-4 rounded-lg text-center">
+                        <span class="text-5xl">👨‍👩‍👧‍👦</span>
+                        <p class="text-indigo-700 font-semibold mt-2">પિતૃઋણ અદા કરવું એ શ્રેષ્ઠ ધર્મ છે.</p>
+                    </div>
+                    <p class="text-slate-600 mt-4">તમે આ કર્તવ્યપાલનની દિશામાં ઘણા આગળ વધી ચૂક્યા છો, તે અત્યંત ભાગ્યની વાત છે.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="reality" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-indigo-700 text-center mb-8">જગતનું સાચું સ્વરૂપ: એક સ્વપ્નવત્ દર્શન</h2>
+            <div class="stat-card max-w-3xl mx-auto">
+                <h3 class="text-2xl font-semibold text-amber-600 mb-3 text-center">સમ્યદૃષ્ટિનું લક્ષણ</h3>
+                <p class="text-slate-600 mb-4 text-center">સમ્યદૃષ્ટિ આત્મા ઘર, વેપાર, સમાજ વગેરેની તમામ ઘટનાઓને 'સ્વપ્ન'ની ઘટનાઓ સમાન જુએ છે. આ ઘટનાઓમાં સંવાદ, સુખ-દુઃખ, રાગ-દ્વેષ, આવશ્યકતા, ફરજ વગેરે બધું જ હોય છે, પરંતુ તેનો કોઈ વાસ્તવિક અર્થ કે પ્રભાવ હોતો નથી.</p>
+                <blockquote class="border-l-4 border-indigo-500 pl-4 italic text-slate-700 my-6 text-center">
+                    "જેમ સ્વપ્નમાંથી જાગ્યા પછી બધું મિથ્યા લાગે, તેમ જ્ઞાનીને આ સંસાર લાગે."
+                </blockquote>
+                <p class="text-slate-600 text-center">આ દ્રષ્ટિ કેળવી, ધર્મની નિંદા ન થાય તે રીતે ઔચિત્યપૂર્વક સાંસારિક વ્યવહારોમાંથી પસાર થઈ જવું એ જ સાર છે. સાંસારિક મોહ-માયા સ્વ અને પર બંને માટે નુકસાનકારક અને દુર્ગતિમાં ભ્રમણ કરાવનારી છે.</p>
+            </div>
+        </section>
+
+        <section id="identity" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-indigo-700 text-center mb-8">'અહં' અને 'મમ': સાચી ઓળખ તરફ</h2>
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold text-green-600 mb-2">👍 પ્રશસ્ત 'અહં' અને 'મમ' (ઉત્કર્ષક)</h3>
+                    <p class="text-sm text-slate-600 mb-1"><strong class="text-slate-700">પ્રશસ્ત 'અહં':</strong> આત્મસંવેદન સ્વરૂપ (પોતાના શુદ્ધ આત્મસ્વરૂપનું ભાન).</p>
+                    <p class="text-sm text-slate-600"><strong class="text-slate-700">પ્રશસ્ત 'મમ':</strong> આત્મગુણોની મમતા સ્વરૂપ (પોતાના જ્ઞાન, દર્શન, ચારિત્ર જેવા ગુણો પ્રત્યે લગાવ).</p>
+                    <p class="mt-3 text-green-700 font-semibold">આ આત્માને તારે છે, ઉન્નતિ કરાવે છે.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold text-red-600 mb-2">👎 અપ્રશસ્ત 'અહં' અને 'મમ' (પતનકારક)</h3>
+                    <p class="text-sm text-slate-600 mb-1"><strong class="text-slate-700">અપ્રશસ્ત 'અહં':</strong> શરીરમાં 'હું'ની સંવેદના (શરીરને જ આત્મા માનવું).</p>
+                    <p class="text-sm text-slate-600"><strong class="text-slate-700">અપ્રશસ્ત 'મમ':</strong> સ્વજન-સંપત્તિ વગેરેની મમતા (બાહ્ય વસ્તુઓ અને સંબંધોમાં આસક્તિ).</p>
+                    <p class="mt-3 text-red-700 font-semibold">આ આત્માને ડુબાડે છે, ભ્રમિત કરે છે.</p>
+                </div>
+            </div>
+            <div class="stat-card max-w-3xl mx-auto">
+                <h3 class="text-2xl font-semibold text-amber-600 mb-4 text-center">આત્મિક પ્રગતિનો માર્ગ</h3>
+                <p class="text-slate-600 mb-4 text-center">જિનશાસનનો સાર એ જ છે કે આત્મા અપ્રશસ્ત 'અહં-મમ'ને છોડીને પ્રશસ્ત 'અહં-મમ'ને અપનાવે. સાંસારિક વાતાવરણ નિરંતર અપ્રશસ્ત ભાવોને પોષે છે, જ્યારે જિનશાસન પ્રશસ્ત ભાવોને પોષીને આત્માને પરમગતિ તરફ દોરે છે.</p>
+                <div class="chart-container h-72 sm:h-80">
+                    <canvas id="ahamMamaImpactChart"></canvas>
+                </div>
+                <p class="text-sm text-slate-500 mt-2 text-center">આ ચાર્ટ 'અહં' અને 'મમ'ના પ્રકારોના આત્મા પર થતા કાલ્પનિક પ્રભાવને દર્શાવે છે.</p>
+            </div>
+        </section>
+
+        <section id="path" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-indigo-700 text-center mb-8">જિનશાસનનો અદ્ભુત માર્ગ અને આપણું કર્તવ્ય</h2>
+            <div class="stat-card mb-8">
+                <h3 class="text-2xl font-semibold text-amber-600 mb-3 text-center">જિનશાસન: એક દિવ્ય વ્યવસ્થા</h3>
+                <p class="text-slate-600 mb-6 text-center">જિનશાસને એક એવી અદ્ભુત વ્યવસ્થાનું નિર્માણ કર્યું છે જે નિરંતર પ્રશસ્ત 'અહં-મમ'ને પોષે છે, આત્માને સભાન રાખે છે, અને સદ્ગતિની પરંપરા સાથે પરમગતિની પ્રાપ્તિ કરાવે છે. આ વ્યવસ્થા સર્વ પ્રકારે સજ્જ છે, આપણે ફક્ત તેનો લાભ લઈને કૃતાર્થ થવાનું છે.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
+                    <div class="flow-step">સાંસારિક પ્રભાવ (અપ્રશસ્ત વૃત્તિ)</div>
+                    <div class="flow-arrow hidden sm:block">➡️</div>
+                    <div class="flow-arrow block sm:hidden self-center">⬇️</div>
+                    <div class="flow-step">જિનશાસનનું માર્ગદર્શન (પ્રશસ્ત વૃત્તિનું પોષણ)</div>
+                     <div class="flow-arrow hidden sm:block">➡️</div>
+                     <div class="flow-arrow block sm:hidden self-center">⬇️</div>
+                    <div class="flow-step">આત્મજાગૃતિ અને પરમગતિ</div>
+                </div>
+            </div>
+            <div class="stat-card text-center max-w-2xl mx-auto">
+                <h3 class="text-2xl font-semibold text-amber-600 mb-3">દુર્લભ અવસર અને કર્તવ્યનિષ્ઠા</h3>
+                <p class="text-slate-600 mb-2">અનંતકાળે મળેલા આ દુર્લભ-મહાદુર્લભ મનુષ્યભવમાં પણ જો આપણે કર્તવ્યને બદલે અકર્તવ્યમાં જ રચ્યાપચ્યા રહીશું, તો આપણા આત્માનો ઉદ્ધાર ક્યારે થશે?</p>
+                <p class="text-6xl font-bold text-indigo-600 my-6">💎</p>
+                <p class="text-slate-700 font-semibold text-lg">"નાવ સામે જ છે, પાસે જ છે, ને તો ય આપણે ડૂબી જઈશું?"</p>
+                <p class="text-slate-600 mt-4">મોક્ષની આટલી નજીક આવ્યા પછી પણ શું આપણે સંસાર તરફ પાછા વળીશું? ગંભીરતાપૂર્વક વિચાર કરી, આપણા પરમ કર્તવ્ય માટે સજ્જ થઈએ, એ જ સમયનો તકાજો છે. મોક્ષના લક્ષ્ય તરફ અડગ પગલે આગળ વધો, એ જ શુભેચ્છા.</p>
+            </div>
+        </section>
+
+        <footer class="text-center py-8 mt-12 border-t border-slate-300">
+            
+        </footer>
+
+    </main>
+
+    <script>
+        function wrapLabel(str, maxWidth) {
+            if (typeof str !== 'string' || str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let currentLine = '';
+            const lines = [];
+            for (const word of words) {
+                if ((currentLine + word).length <= maxWidth) {
+                    currentLine += (currentLine ? ' ' : '') + word;
+                } else {
+                    if (currentLine) lines.push(currentLine);
+                    currentLine = word;
+                }
+            }
+            if (currentLine) lines.push(currentLine);
+            return lines.length > 0 ? lines : [str]; // Ensure it returns at least the original string if no split occurs
+        }
+        
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        // Attachment Impact Chart (Donut Chart)
+        const attachmentCtx = document.getElementById('attachmentImpactChart').getContext('2d');
+        new Chart(attachmentCtx, {
+            type: 'doughnut',
+            data: {
+                labels: [wrapLabel('મોહગ્રસ્ત જીવન (કાલ્પનિક %)', 16), wrapLabel('ત્યાગ બાદ શાંતિ (કાલ્પનિક %)',16)],
+                datasets: [{
+                    label: 'મોહનો પ્રભાવ',
+                    data: [65, 35], // Illustrative data
+                    backgroundColor: ['#ef4444', '#22c55e'], // Red, Green
+                    borderColor: ['#f87171', '#4ade80'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'આસક્તિનો પ્રભાવ અને ત્યાગનું પરિણામ',
+                        font: { size: 16, family: "'Noto Sans Gujarati', sans-serif" },
+                        color: '#3730a3'
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                             font: { family: "'Noto Sans Gujarati', sans-serif" },
+                             color: '#334155'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback },
+                        bodyFont: { family: "'Noto Sans Gujarati', sans-serif" },
+                        titleFont: { family: "'Noto Sans Gujarati', sans-serif" }
+                    }
+                }
+            }
+        });
+
+        // Aham/Mama Impact Chart (Bar Chart)
+        const ahamMamaCtx = document.getElementById('ahamMamaImpactChart').getContext('2d');
+        new Chart(ahamMamaCtx, {
+            type: 'bar',
+            data: {
+                labels: [wrapLabel('અપ્રશસ્ત અહં-મમ',16), wrapLabel('પ્રશસ્ત અહં-મમ',16)],
+                datasets: [{
+                    label: 'આત્મિક ગતિ (કાલ્પનિક)',
+                    data: [-60, 80], // Illustrative data: Negative for downfall, Positive for upliftment
+                    backgroundColor: (context) => {
+                        const value = context.raw;
+                        return value < 0 ? '#ef4444' : '#22c55e'; // Red for negative, Green for positive
+                    },
+                    borderColor: (context) => {
+                        const value = context.raw;
+                        return value < 0 ? '#f87171' : '#4ade80';
+                    },
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: false, // Allow negative values to show direction
+                        title: { 
+                            display: true, 
+                            text: 'આત્મિક પ્રભાવ (કાલ્પનિક માપ)',
+                            font: { family: "'Noto Sans Gujarati', sans-serif" },
+                            color: '#334155'
+                        },
+                        ticks: { 
+                            font: { family: "'Noto Sans Gujarati', sans-serif" },
+                            color: '#475569'
+                        }
+                    },
+                    y: {
+                       ticks: { 
+                           font: { family: "'Noto Sans Gujarati', sans-serif", size: 10 },
+                           color: '#475569'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "'અહં' અને 'મમ'નો આત્મા પર પ્રભાવ",
+                        font: { size: 16, family: "'Noto Sans Gujarati', sans-serif" },
+                        color: '#3730a3'
+                    },
+                    legend: {
+                        display: false // Label is clear enough
+                    },
+                    tooltip: {
+                        callbacks: {
+                             title: tooltipTitleCallback,
+                             label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += context.parsed.x > 0 ? `ઉત્કર્ષ ${context.parsed.x}` : `પતન ${Math.abs(context.parsed.x)}`;
+                                }
+                                return label;
+                            }
+                        },
+                        bodyFont: { family: "'Noto Sans Gujarati', sans-serif" },
+                        titleFont: { family: "'Noto Sans Gujarati', sans-serif" }
+                    }
+                }
+            }
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

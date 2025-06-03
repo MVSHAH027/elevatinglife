@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Tutorial Quiz: Chapters 9 & 10</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            overscroll-behavior-y: contain; /* Prevents pull-to-refresh on mobile when scrolling within quiz */
+        }
+        .gujarati-text {
+            font-family: 'Noto Sans Gujarati', sans-serif;
+        }
+        .quiz-option {
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+        .quiz-option:hover {
+            transform: translateY(-2px);
+        }
+        .correct-answer {
+            background-color: #10B981 !important; /* Tailwind green-600 */
+            color: white !important;
+            border-color: #059669 !important; /* Tailwind green-700 */
+        }
+        .wrong-answer {
+            background-color: #EF4444 !important; /* Tailwind red-500 */
+            color: white !important;
+            border-color: #DC2626 !important; /* Tailwind red-600 */
+        }
+        .disabled-option {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        .section-title {
+            background: linear-gradient(to right, #6366F1, #8B5CF6); /* Indigo to Purple */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .lesson-card {
+            background-color: #F3F4F6; /* Tailwind gray-100 */
+            border-left: 5px solid #6366F1; /* Indigo */
+        }
+        .gujarati-text .lesson-card {
+             border-left: 5px solid #D97706; /* Amber */
+        }
+        .letter-section {
+            background-color: #FFFBEB; /* Tailwind yellow-50 */
+            border: 1px solid #FDE68A; /* Tailwind yellow-200 */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-100 via-gray-100 to-stone-100 text-slate-800 leading-relaxed">
+
+    <div class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-md p-3">
+        <div class="container mx-auto flex justify-center space-x-4">
+            <button id="lang-en" class="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition duration-150 ease-in-out">English</button>
+            <button id="lang-gu" class="px-6 py-2 bg-amber-600 text-white font-semibold rounded-lg shadow-md hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-400 transition duration-150 ease-in-out gujarati-text">ગુજરાતી</button>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-8">
+        <h1 id="main-title" class="text-3xl sm:text-4xl font-bold text-center text-indigo-700 mb-8"></h1>
+
+        <section id="lessons-section" class="mb-12 scroll-mt-20">
+            <h2 id="lessons-title" class="text-2xl sm:text-3xl font-bold text-center mb-6 section-title"></h2>
+            <div id="lessons-content" class="space-y-6">
+                </div>
+        </section>
+
+        <section id="quiz-section" class="mb-12 scroll-mt-20">
+            <h2 id="quiz-title-main" class="text-2xl sm:text-3xl font-bold text-center mb-6 section-title"></h2>
+            
+            <div id="mcq-container" class="mb-10">
+                <h3 id="mcq-title" class="text-xl font-semibold text-indigo-600 mb-4"></h3>
+                <div id="mcq-questions" class="space-y-8">
+                    </div>
+            </div>
+
+            <div id="truefalse-container" class="mb-10">
+                <h3 id="truefalse-title" class="text-xl font-semibold text-indigo-600 mb-4"></h3>
+                <div id="truefalse-questions" class="space-y-8">
+                    </div>
+            </div>
+            
+            <div id="match-container" class="mb-10">
+                <h3 id="match-title" class="text-xl font-semibold text-indigo-600 mb-4"></h3>
+                <div id="match-questions" class="space-y-8">
+                    </div>
+            </div>
+        </section>
+        
+        <section id="letter-to-guru-section" class="mb-12 scroll-mt-20 p-6 rounded-lg shadow-lg letter-section">
+            <h2 id="letter-to-guru-title" class="text-2xl sm:text-3xl font-bold text-center text-amber-700 mb-6"></h2>
+            <div id="letter-to-guru-content" class="text-slate-700 prose max-w-none">
+                </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 bg-slate-800 text-slate-300">
+        <p>&copy; <span id="currentYear"></span> Interactive Tutorial Quiz. Inspired by teachings.</p>
+    </footer>
+
+    <script>
+        const quizData = {
+            en: {
+                mainTitle: "Interactive Tutorial Quiz: Chapters 9 & 10",
+                lessonsTitle: "10 Key Lessons from Chapters 9 & 10",
+                lessons: [
+                    { title: "1. Hard Work for Self-Control:", text: "To become good, intense effort is needed for self-control, much like studying for exams. Easy self-control implies effort from a past life." },
+                    { title: "2. Letting Go of Attachment is Tough:", text: "It's hard to detach from things or people (e.g., a phone during exams). It requires effort, even if difficult." },
+                    { title: "3. Duty to Parents:", text: "It's our duty to care for our parents and guide them towards spiritual happiness, just as we study for their well-being." },
+                    { title: "4. Illusions Are Harmful:", text: "Worldly attachments (like greed for money) ultimately bring harm and sadness, similar to how too much chocolate harms teeth." },
+                    { title: "5. Life is Like a Dream:", text: "For the wise, worldly aspects (home, friends, emotions) are like a dream – not permanent. Focus on good deeds." },
+                    { title: "6. The Importance of Inner Strength:", text: "Courage and mental fortitude are essential for any great achievement, including spiritual progress, like climbing a mountain." },
+                    { title: "7. Two Kinds of 'I' and 'Mine':", text: "One type of 'I' (Aham) and 'Mine' (Mama) is good (leads to self-knowledge). The other is bad (traps in attachment to body, possessions)." },
+                    { title: "8. Recognize the True 'I':", text: "You are the soul, not the body. Your virtues are 'yours', not possessions. 'My knowledge', 'my faith' are true possessions." },
+                    { title: "9. The Path of Jinashasan:", text: "Jinashasan (Jainism) shows the way to uplift the soul by embracing good 'I' and 'Mine', like a school teaching only good things." },
+                    { title: "10. Making the Most of a Rare Opportunity:", text: "Human birth is rare. Not using it for good deeds means missing a chance for liberation, like wasting an exam opportunity." }
+                ],
+                quizTitleMain: "Test Your Understanding",
+                mcqTitle: "Multiple Choice Questions",
+                mcqs: [
+                    { id: "en_mcq_1", question: "What is impossible to achieve without intense effort?", options: ["Wealth", "Self-control", "Friends"], answer: "Self-control" },
+                    { id: "en_mcq_2", question: "Why did Jambuswami find attaining self-control easy?", options: ["Guru's help", "Intense effort from a past life", "Family support"], answer: "Intense effort from a past life" },
+                    { id: "en_mcq_3", question: "What helps in letting go of attachment to children?", options: ["Money", "Intense dispassion and effort for self-control", "Friends' advice"], answer: "Intense dispassion and effort for self-control" },
+                    { id: "en_mcq_4", question: "What is the ultimate outcome of worldly attachments and illusions?", options: ["Happiness", "Wandering in miserable destinies", "Peace"], answer: "Wandering in miserable destinies" },
+                    { id: "en_mcq_5", question: "How does a rightly perceiving soul view events at home, business, etc.?", options: ["Real", "Important", "Like a dream"], answer: "Like a dream" },
+                    { id: "en_mcq_6", question: "What is the value of accomplishment (Siddhi)?", options: ["Wealth", "Inner strength (Sattva)", "Power"], answer: "Inner strength (Sattva)" },
+                    { id: "en_mcq_7", question: "What is the nature of praiseworthy 'I' (Aham)?", options: ["Sensation of 'I' in the body", "Self-realization", "Ownership of things"], answer: "Self-realization" },
+                    { id: "en_mcq_8", question: "What does unpraiseworthy 'I-Mine' do to the soul?", options: ["Uplifts it", "Drowns it", "Gives peace"], answer: "Drowns it" },
+                    { id: "en_mcq_9", question: "What is the main essence of Jinashasan?", options: ["Earning money", "Abandoning unpraiseworthy 'I-Mine' and embracing praiseworthy 'I-Mine'", "Only worshipping"], answer: "Abandoning unpraiseworthy 'I-Mine' and embracing praiseworthy 'I-Mine'" },
+                    { id: "en_mcq_10", question: "What kind of opportunity is human birth?", options: ["Normal", "Rare-extremely rare", "Full of difficulties"], answer: "Rare-extremely rare" }
+                ],
+                trueFalseTitle: "True or False",
+                trueFalse: [
+                    { id: "en_tf_1", statement: "If self-control was attained easily, there was no intense effort from a past life.", answer: false },
+                    { id: "en_tf_2", statement: "The process of letting go of attachment is always blissful.", answer: false },
+                    { id: "en_tf_3", statement: "It is every child's ultimate duty for their parents to attain eternal happiness.", answer: true },
+                    { id: "en_tf_4", statement: "Worldly attachments and illusions benefit everyone, including oneself and others.", answer: false },
+                    { id: "en_tf_5", statement: "Jinashasan constantly nourishes unpraiseworthy 'I-Mine'.", answer: false }
+                ],
+                matchTitle: "Match the Concepts",
+                match: [
+                    { id: "en_match_1", columnAItem: "Intense effort", questionPrefix: "'Intense effort' primarily leads to:", options: ["Nature of self-realization", "Rare human birth", "Attaining self-control", "Difficult process", "Harmful"], answer: "Attaining self-control" },
+                    { id: "en_match_2", columnAItem: "Letting go of attachment to children", questionPrefix: "'Letting go of attachment to children' is often a:", options: ["Nature of self-realization", "Rare human birth", "Attaining self-control", "Difficult process", "Harmful"], answer: "Difficult process" },
+                    { id: "en_match_3", columnAItem: "Worldly attachments and illusions", questionPrefix: "'Worldly attachments and illusions' are ultimately:", options: ["Nature of self-realization", "Rare human birth", "Attaining self-control", "Difficult process", "Harmful"], answer: "Harmful" },
+                    { id: "en_match_4", columnAItem: "Praiseworthy 'I' (Aham)", questionPrefix: "'Praiseworthy \"I\" (Aham)' is the:", options: ["Nature of self-realization", "Rare human birth", "Attaining self-control", "Difficult process", "Harmful"], answer: "Nature of self-realization" },
+                    { id: "en_match_5", columnAItem: "Opportunity received after infinite time", questionPrefix: "The 'Opportunity received after infinite time' refers to:", options: ["Nature of self-realization", "Rare human birth", "Attaining self-control", "Difficult process", "Harmful"], answer: "Rare human birth" }
+                ],
+                letterToGuruTitle: "Letter to Guru",
+                letterToGuru: `
+                    <p class="mb-4">Dear Guruji,</p>
+                    <p class="mb-4">Reading your inspiring words has brought much peace and clarity to my mind. In Chapters 9 and 10, you've explained profound topics like self-control, effort, attachment, 'Aham' (I), and 'Mama' (Mine) with daily examples, making them so simple that they've touched my heart directly.</p>
+                    <p class="mb-4">Especially, your words about our duty towards our parents and seeing worldly events as a "dream" have greatly influenced me. In modern life, where it's easy to get caught in attachments and illusions, your teachings show the right path.</p>
+                    <p class="mb-4">Understanding the difference between praiseworthy and unpraiseworthy 'I' and 'Mine' has made my path to self-welfare clearer. I've been able to understand what the true 'I' and 'Mine' are and where I should focus my attention.</p>
+                    <p class="mb-4">The inspiration to move forward on the path of liberation, by making good use of this rare human birth, continuously comes from your words. I will try to progress firmly on the path you've shown and uplift my soul.</p>
+                    <p class="mb-4">I pray that your blessings and guidance always remain with me.</p>
+                    <p>Your obedient disciple,</p>
+                    <p>[Your Name]</p>
+                `
+            },
+            gu: {
+                mainTitle: "ઇન્ટરેક્ટિવ ટ્યુટોરિયલ ક્વિઝ: પ્રકરણ ૯ અને ૧૦",
+                lessonsTitle: "પ્રકરણ ૯ અને ૧૦ માંથી શીખવા જેવી ૧૦ મુખ્ય વાતો",
+                lessons: [
+                    { title: "૧. સંયમ માટે મહેનત:", text: "સારા બનવા માટે, સંયમ માટે તીવ્ર પ્રયત્નોની જરૂર છે, જેમ પરીક્ષા માટે અભ્યાસ કરવો. સરળ સંયમ એ પાછલા જન્મના પ્રયત્નો સૂચવે છે." },
+                    { title: "૨. મોહ છોડવો અઘરો:", text: "વસ્તુઓ કે વ્યક્તિઓથી અલગ થવું મુશ્કેલ છે (દા.ત. પરીક્ષા સમયે ફોન). તેના માટે પ્રયત્ન જરૂરી છે, ભલે તે મુશ્કેલ હોય." },
+                    { title: "૩. માતા-પિતાનું કર્તવ્ય:", text: "આપણા માતા-પિતાની સંભાળ રાખવી અને તેમને આધ્યાત્મિક સુખ તરફ માર્ગદર્શન આપવું એ આપણું કર્તવ્ય છે, જેમ આપણે તેમની સુખાકારી માટે અભ્યાસ કરીએ છીએ." },
+                    { title: "૪. માયા નુકસાનકારક:", text: "સાંસારિક આસક્તિઓ (જેમ કે પૈસાનો લોભ) અંતે નુકસાન અને દુઃખ લાવે છે, જેમ વધુ પડતી ચોકલેટ દાંતને નુકસાન પહોંચાડે છે." },
+                    { title: "૫. જીવન એક સ્વપ્ન જેવું:", text: "જ્ઞાનીઓ માટે, સાંસારિક પાસાઓ (ઘર, મિત્રો, લાગણીઓ) સ્વપ્ન જેવા છે - કાયમી નથી. સારા કાર્યો પર ધ્યાન કેન્દ્રિત કરો." },
+                    { title: "૬. સત્ત્વ (હિંમત) નું મહત્ત્વ:", text: "કોઈપણ મોટી સિદ્ધિ માટે હિંમત અને મનોબળ જરૂરી છે, જેમાં આધ્યાત્મિક પ્રગતિનો સમાવેશ થાય છે, જેમ પર્વત ચડવા માટે." },
+                    { title: "૭. બે પ્રકારના 'હું' અને 'મારું':", text: "એક પ્રકારનું 'હું' (અહં) અને 'મારું' (મમ) સારું છે (આત્મજ્ઞાન તરફ દોરી જાય છે). બીજું ખરાબ છે (શરીર, સંપત્તિ સાથેના જોડાણમાં ફસાવે છે)." },
+                    { title: "૮. સાચા 'હું' ને ઓળખો:", text: "તમે આત્મા છો, શરીર નહીં. તમારા ગુણો 'તમારા' છે, સંપત્તિ નહીં. 'મારું જ્ઞાન', 'મારી શ્રદ્ધા' એ સાચી સંપત્તિ છે." },
+                    { title: "૯. જિનશાસનનો માર્ગ:", text: "જિનશાસન (જૈન ધર્મ) સારા 'હું' અને 'મારું' ને અપનાવીને આત્માને ઉન્નત કરવાનો માર્ગ બતાવે છે, જેમ કે શાળા ફક્ત સારી વસ્તુઓ શીખવે છે." },
+                    { title: "૧૦. દુર્લભ અવસરનો સદુપયોગ:", text: "મનુષ્ય જન્મ દુર્લભ છે. સારા કાર્યો માટે તેનો ઉપયોગ ન કરવો એટલે મુક્તિની તક ગુમાવવી, જેમ પરીક્ષાની તક વેડફવી." }
+                ],
+                quizTitleMain: "તમારી સમજ ચકાસો",
+                mcqTitle: "બહુવિકલ્પી પ્રશ્નો",
+                mcqs: [
+                    { id: "gu_mcq_1", question: "તીવ્ર પુરુષાર્થ વિના શું પ્રાપ્ત કરવું અશક્ય છે?", options: ["ધન", "સંયમ", "મિત્રો"], answer: "સંયમ" },
+                    { id: "gu_mcq_2", question: "જંબૂસ્વામીને સંયમની પ્રાપ્તિ શાના કારણે સરળ લાગી?", options: ["ગુરુની મદદ", "પૂર્વજન્મનો તીવ્ર પુરુષાર્થ", "પરિવારનો સહયોગ"], answer: "પૂર્વજન્મનો તીવ્ર પુરુષાર્થ" },
+                    { id: "gu_mcq_3", question: "પુત્રમોહ છોડવામાં શું મદદરૂપ બને છે?", options: ["પૈસા", "તીવ્ર વૈરાગ્ય અને સંયમપ્રાપ્તિનો પુરુષાર્થ", "મિત્રોની સલાહ"], answer: "તીવ્ર વૈરાગ્ય અને સંયમપ્રાપ્તિનો પુરુષાર્થ" },
+                    { id: "gu_mcq_4", question: "સાંસારિક મોહ-માયાનું અંતિમ પરિણામ શું છે?", options: ["સુખ", "દુર્ગતિમાં ભ્રમણ", "શાંતિ"], answer: "દુર્ગતિમાં ભ્રમણ" },
+                    { id: "gu_mcq_5", question: "સમ્યદૃષ્ટિ આત્મા ઘર, વેપાર વગેરેની ઘટનાઓને કેવી જોવે છે?", options: ["સાચી", "અગત્યની", "સ્વપ્ન જેવી"], answer: "સ્વપ્ન જેવી" },
+                    { id: "gu_mcq_6", question: "સિદ્ધિનું મૂલ્ય શું છે?", options: ["ધન", "સત્ત્વ (આત્મબળ)", "સત્તા"], answer: "સત્ત્વ (આત્મબળ)" },
+                    { id: "gu_mcq_7", question: "પ્રશસ્ત 'અહં' નું સ્વરૂપ કેવું હોય છે?", options: ["શરીરમાં 'હું' ની સંવેદના", "આત્મસંવેદનસ્વરૂપ", "વસ્તુઓ પર માલિકી"], answer: "આત્મસંવેદનસ્વરૂપ" },
+                    { id: "gu_mcq_8", question: "અપ્રશસ્ત 'અહં-મમ' આત્માને શું કરે છે?", options: ["તારે છે", "ડુબાડે છે", "શાંતિ આપે છે"], answer: "ડુબાડે છે" },
+                    { id: "gu_mcq_9", question: "જિનશાસનનો મુખ્ય સાર શું છે?", options: ["ધન કમાવવું", "અપ્રશસ્ત અહં-મમને છોડીને પ્રશસ્ત અહં-મમને અપનાવવું", "ફક્ત પૂજા કરવી"], answer: "અપ્રશસ્ત અહં-મમને છોડીને પ્રશસ્ત અહં-મમને અપનાવવું" },
+                    { id: "gu_mcq_10", question: "મનુષ્ય જન્મ કેવો અવસર છે?", options: ["સામાન્ય", "દુર્લભ-મહાદુર્લભ", "કષ્ટવાળો"], answer: "દુર્લભ-મહાદુર્લભ" }
+                ],
+                trueFalseTitle: "ખરા કે ખોટા",
+                trueFalse: [
+                    { id: "gu_tf_1", statement: "સરળતાથી સંયમની પ્રાપ્તિ થઈ હોય ત્યાં પૂર્વજન્મનો તીવ્ર પુરુષાર્થ હોતો નથી.", answer: false },
+                    { id: "gu_tf_2", statement: "મોહ છૂટવાની પ્રક્રિયા હંમેશા સુખમય હોય છે.", answer: false },
+                    { id: "gu_tf_3", statement: "માતા-પિતાને શાશ્વત સુખ મળે તે દરેક પુત્રનું પરમ કર્તવ્ય છે.", answer: true },
+                    { id: "gu_tf_4", statement: "સાંસારિક મોહ-માયા સ્વ-પર સહુને લાભ કરનારી છે.", answer: false },
+                    { id: "gu_tf_5", statement: "જિનશાસન સતત અપ્રશસ્ત અહં-મમને પોષે છે.", answer: false }
+                ],
+                matchTitle: "વિભાવનાઓ જોડો",
+                match: [
+                    { id: "gu_match_1", columnAItem: "તીવ્ર પુરુષાર્થ", questionPrefix: "'તીવ્ર પુરુષાર્થ' મુખ્યત્વે શેના તરફ દોરી જાય છે:", options: ["આત્મસંવેદનસ્વરૂપ", "દુર્લભ મનુષ્ય જન્મ", "સંયમની પ્રાપ્તિ", "કષ્ટવાળી પ્રક્રિયા", "નુકસાન કરનારી"], answer: "સંયમની પ્રાપ્તિ" },
+                    { id: "gu_match_2", columnAItem: "પુત્રમોહ છોડવો", questionPrefix: "'પુત્રમોહ છોડવો' એ ઘણીવાર કેવી પ્રક્રિયા છે:", options: ["આત્મસંવેદનસ્વરૂપ", "દુર્લભ મનુષ્ય જન્મ", "સંયમની પ્રાપ્તિ", "કષ્ટવાળી પ્રક્રિયા", "નુકસાન કરનારી"], answer: "કષ્ટવાળી પ્રક્રિયા" },
+                    { id: "gu_match_3", columnAItem: "સાંસારિક મોહ-માયા", questionPrefix: "'સાંસારિક મોહ-માયા' અંતે કેવી હોય છે:", options: ["આત્મસંવેદનસ્વરૂપ", "દુર્લભ મનુષ્ય જન્મ", "સંયમની પ્રાપ્તિ", "કષ્ટવાળી પ્રક્રિયા", "નુકસાન કરનારી"], answer: "નુકસાન કરનારી" },
+                    { id: "gu_match_4", columnAItem: "પ્રશસ્ત 'અહં'", questionPrefix: "'પ્રશસ્ત \"અહં\"' શું છે:", options: ["આત્મસંવેદનસ્વરૂપ", "દુર્લભ મનુષ્ય જન્મ", "સંયમની પ્રાપ્તિ", "કષ્ટવાળી પ્રક્રિયા", "નુકસાન કરનારી"], answer: "આત્મસંવેદનસ્વરૂપ" },
+                    { id: "gu_match_5", columnAItem: "અનંતકાળે મળેલ અવસર", questionPrefix: "'અનંતકાળે મળેલ અવસર' શેનો ઉલ્લેખ કરે છે:", options: ["આત્મસંવેદનસ્વરૂપ", "દુર્લભ મનુષ્ય જન્મ", "સંયમની પ્રાપ્તિ", "કષ્ટવાળી પ્રક્રિયા", "નુકસાન કરનારી"], answer: "દુર્લભ મનુષ્ય જન્મ" }
+                ],
+                letterToGuruTitle: "ગુરુને પત્ર",
+                letterToGuru: `
+                    <p class="mb-4">પ્રિય ગુરુજી,</p>
+                    <p class="mb-4">આપના પ્રેરક વચનો વાંચીને મનમાં ઘણી શાંતિ અને સ્પષ્ટતા અનુભવી રહ્યો/રહી છું. પ્રકરણ ૯ અને ૧૦ માં આપે સમજાવેલ 'સંયમ’, 'પુરુષાર્થ', 'મોહ’, 'અહં' અને 'મમ' જેવા ગહન વિષયોને આપે દૈનિક જીવનના ઉદાહરણોથી એટલા સરળ બનાવી દીધા છે કે તે સીધા હૃદયમાં ઉતરી ગયા છે.</p>
+                    <p class="mb-4">ખાસ કરીને, માતા-પિતા પ્રત્યેના કર્તવ્યની વાત અને સાંસારિક ઘટનાઓને ‘સ્વપ્ન' સમાન જોવાની દ્રષ્ટિએ મને ખૂબ પ્રભાવિત કરી છે. આધુનિક જીવનમાં જ્યાં મોહ-માયામાં ફસાઈ જવું સહેલું છે, ત્યાં આપની શીખામણ સાચી દિશા બતાવે છે.</p>
+                    <p class="mb-4">'અહં' અને 'મમ' ના પ્રશસ્ત અને અપ્રશસ્ત ભેદને સમજવાથી મારા આત્મકલ્યાણનો માર્ગ વધુ સ્પષ્ટ થયો છે. હું સમજી શક્યો/શકી છું કે સાચું 'હું' અને 'મારું' શું છે અને ક્યાં ધ્યાન કેન્દ્રિત કરવું જોઈએ.</p>
+                    <p class="mb-4">આ દુર્લભ મનુષ્ય જન્મનો સદુપયોગ કરીને મોક્ષના માર્ગે આગળ વધવાની પ્રેરણા આપના વચનોમાંથી સતત મળતી રહે છે. હું પ્રયત્ન કરીશ/કરીશ કે આપે બતાવેલા માર્ગે દ્રઢતાપૂર્વક આગળ વધી શકું અને મારા આત્માનો ઉદ્ધાર કરી શકું.</p>
+                    <p class="mb-4">આપના આશીર્વાદ અને માર્ગદર્શન સદૈવ મારા પર બની રહે તેવી પ્રાર્થના.</p>
+                    <p>આપનો/આપની આજ્ઞાંકિત શિષ્ય/શિષ્યા,</p>
+                    <p>[તમારું નામ]</p>
+                `
+            }
+        };
+
+        let currentLang = 'en';
+
+        // DOM Elements
+        const mainTitleEl = document.getElementById('main-title');
+        const lessonsTitleEl = document.getElementById('lessons-title');
+        const lessonsContentEl = document.getElementById('lessons-content');
+        const quizTitleMainEl = document.getElementById('quiz-title-main');
+        
+        const mcqTitleEl = document.getElementById('mcq-title');
+        const mcqQuestionsEl = document.getElementById('mcq-questions');
+        
+        const trueFalseTitleEl = document.getElementById('truefalse-title');
+        const trueFalseQuestionsEl = document.getElementById('truefalse-questions');
+
+        const matchTitleEl = document.getElementById('match-title');
+        const matchQuestionsEl = document.getElementById('match-questions');
+        
+        const letterToGuruTitleEl = document.getElementById('letter-to-guru-title');
+        const letterToGuruContentEl = document.getElementById('letter-to-guru-content');
+
+        const langEnBtn = document.getElementById('lang-en');
+        const langGuBtn = document.getElementById('lang-gu');
+        
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        function renderLessons() {
+            const data = quizData[currentLang];
+            lessonsTitleEl.textContent = data.lessonsTitle;
+            lessonsContentEl.innerHTML = data.lessons.map(lesson => `
+                <div class="p-4 rounded-lg shadow-md lesson-card">
+                    <h4 class="font-semibold text-lg mb-1 ${currentLang === 'gu' ? 'gujarati-text' : ''}">${lesson.title}</h4>
+                    <p class="text-slate-700 ${currentLang === 'gu' ? 'gujarati-text' : ''}">${lesson.text}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderMCQs() {
+            const data = quizData[currentLang];
+            mcqTitleEl.textContent = data.mcqTitle;
+            mcqQuestionsEl.innerHTML = data.mcqs.map((mcq, index) => `
+                <div class="p-4 bg-white rounded-lg shadow-lg">
+                    <p class="font-semibold mb-3 text-slate-800 ${currentLang === 'gu' ? 'gujarati-text' : ''}">${index + 1}. ${mcq.question}</p>
+                    <div class="space-y-2">
+                        ${mcq.options.map(option => `
+                            <button 
+                                class="w-full text-left p-3 bg-slate-100 hover:bg-indigo-100 border border-slate-300 rounded-md quiz-option ${currentLang === 'gu' ? 'gujarati-text' : ''}"
+                                onclick="checkAnswer('${mcq.id}', this, '${mcq.answer}', 'mcq')">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="feedback-${mcq.id}" class="mt-2 text-sm font-medium"></div>
+                </div>
+            `).join('');
+        }
+        
+        function renderTrueFalse() {
+            const data = quizData[currentLang];
+            trueFalseTitleEl.textContent = data.trueFalseTitle;
+            trueFalseQuestionsEl.innerHTML = data.trueFalse.map((tf, index) => `
+                <div class="p-4 bg-white rounded-lg shadow-lg">
+                    <p class="font-semibold mb-3 text-slate-800 ${currentLang === 'gu' ? 'gujarati-text' : ''}">${index + 1}. ${tf.statement}</p>
+                    <div class="flex space-x-4">
+                        <button 
+                            class="flex-1 p-3 bg-slate-100 hover:bg-indigo-100 border border-slate-300 rounded-md quiz-option ${currentLang === 'gu' ? 'gujarati-text' : ''}"
+                            onclick="checkAnswer('${tf.id}', this, true, 'tf')">
+                            ${currentLang === 'en' ? 'True' : 'ખરું'}
+                        </button>
+                        <button 
+                            class="flex-1 p-3 bg-slate-100 hover:bg-indigo-100 border border-slate-300 rounded-md quiz-option ${currentLang === 'gu' ? 'gujarati-text' : ''}"
+                            onclick="checkAnswer('${tf.id}', this, false, 'tf')">
+                            ${currentLang === 'en' ? 'False' : 'ખોટું'}
+                        </button>
+                    </div>
+                    <div id="feedback-${tf.id}" class="mt-2 text-sm font-medium"></div>
+                </div>
+            `).join('');
+        }
+
+        function renderMatchQuestions() {
+            const data = quizData[currentLang];
+            matchTitleEl.textContent = data.matchTitle;
+            matchQuestionsEl.innerHTML = data.match.map((matchItem, index) => `
+                <div class="p-4 bg-white rounded-lg shadow-lg">
+                    <p class="font-semibold mb-1 text-slate-800 ${currentLang === 'gu' ? 'gujarati-text' : ''}">
+                        ${index + 1}. ${matchItem.questionPrefix}
+                    </p>
+                    <p class="italic mb-3 text-slate-600 ${currentLang === 'gu' ? 'gujarati-text' : ''}">
+                        (${currentLang === 'en' ? 'Concept from Column A' : 'વિભાગ \'અ\' માંથી વિભાવના'}: ${matchItem.columnAItem})
+                    </p>
+                    <div class="space-y-2">
+                        ${matchItem.options.map(option => `
+                            <button 
+                                class="w-full text-left p-3 bg-slate-100 hover:bg-indigo-100 border border-slate-300 rounded-md quiz-option ${currentLang === 'gu' ? 'gujarati-text' : ''}"
+                                onclick="checkAnswer('${matchItem.id}', this, '${matchItem.answer}', 'match')">
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div id="feedback-${matchItem.id}" class="mt-2 text-sm font-medium"></div>
+                </div>
+            `).join('');
+        }
+
+
+        function renderLetterToGuru() {
+            const data = quizData[currentLang];
+            letterToGuruTitleEl.textContent = data.letterToGuruTitle;
+            letterToGuruContentEl.innerHTML = data.letterToGuru;
+            if (currentLang === 'gu') {
+                letterToGuruContentEl.classList.add('gujarati-text');
+            } else {
+                letterToGuruContentEl.classList.remove('gujarati-text');
+            }
+        }
+        
+        function updateLanguageClass() {
+            document.body.classList.toggle('gujarati-text', currentLang === 'gu');
+        }
+
+        function loadContent() {
+            updateLanguageClass();
+            const data = quizData[currentLang];
+            mainTitleEl.textContent = data.mainTitle;
+            quizTitleMainEl.textContent = data.quizTitleMain;
+
+            if (currentLang === 'gu') {
+                mainTitleEl.classList.add('gujarati-text');
+                lessonsTitleEl.classList.add('gujarati-text');
+                quizTitleMainEl.classList.add('gujarati-text');
+                mcqTitleEl.classList.add('gujarati-text');
+                trueFalseTitleEl.classList.add('gujarati-text');
+                matchTitleEl.classList.add('gujarati-text');
+                letterToGuruTitleEl.classList.add('gujarati-text');
+            } else {
+                mainTitleEl.classList.remove('gujarati-text');
+                lessonsTitleEl.classList.remove('gujarati-text');
+                quizTitleMainEl.classList.remove('gujarati-text');
+                mcqTitleEl.classList.remove('gujarati-text');
+                trueFalseTitleEl.classList.remove('gujarati-text');
+                matchTitleEl.classList.remove('gujarati-text');
+                letterToGuruTitleEl.classList.remove('gujarati-text');
+            }
+
+            renderLessons();
+            renderMCQs();
+            renderTrueFalse();
+            renderMatchQuestions();
+            renderLetterToGuru();
+        }
+
+        window.checkAnswer = function(questionId, selectedButton, correctAnswer, type) {
+            const feedbackEl = document.getElementById(`feedback-${questionId}`);
+            const parentQuestionDiv = selectedButton.closest('.space-y-2, .flex.space-x-4');
+            const options = parentQuestionDiv.querySelectorAll('button.quiz-option');
+
+            let userAnswer;
+            if (type === 'tf') {
+                userAnswer = (selectedButton.textContent.trim() === (currentLang === 'en' ? 'True' : 'ખરું'));
+            } else { // mcq or match
+                userAnswer = selectedButton.textContent.trim();
+            }
+            
+            options.forEach(opt => {
+                opt.classList.add('disabled-option');
+                opt.disabled = true; // Disable all options for this question
+                
+                let optValue;
+                 if (type === 'tf') {
+                    optValue = (opt.textContent.trim() === (currentLang === 'en' ? 'True' : 'ખરું'));
+                } else {
+                    optValue = opt.textContent.trim();
+                }
+
+                if (optValue === correctAnswer) {
+                    opt.classList.add('correct-answer'); // Highlight correct answer regardless of user choice
+                }
+            });
+
+            if (userAnswer === correctAnswer) {
+                selectedButton.classList.add('correct-answer');
+                feedbackEl.textContent = currentLang === 'en' ? 'Correct!' : 'સાચો જવાબ!';
+                feedbackEl.className = 'mt-2 text-sm font-medium text-green-600';
+            } else {
+                selectedButton.classList.add('wrong-answer');
+                feedbackEl.textContent = `${currentLang === 'en' ? 'Incorrect.' : 'ખોટો જવાબ.'} ${currentLang === 'en' ? 'Correct answer highlighted.' : 'સાચો જવાબ પ્રકાશિત કર્યો છે.'}`;
+                feedbackEl.className = 'mt-2 text-sm font-medium text-red-600';
+            }
+        }
+
+        langEnBtn.addEventListener('click', () => {
+            currentLang = 'en';
+            langEnBtn.classList.add('bg-indigo-700', 'ring-2', 'ring-indigo-400');
+            langEnBtn.classList.remove('bg-indigo-600');
+            langGuBtn.classList.add('bg-amber-600');
+            langGuBtn.classList.remove('bg-amber-700', 'ring-2', 'ring-amber-400');
+            loadContent();
+        });
+
+        langGuBtn.addEventListener('click', () => {
+            currentLang = 'gu';
+            langGuBtn.classList.add('bg-amber-700', 'ring-2', 'ring-amber-400');
+            langGuBtn.classList.remove('bg-amber-600');
+            langEnBtn.classList.add('bg-indigo-600');
+            langEnBtn.classList.remove('bg-indigo-700', 'ring-2', 'ring-indigo-400');
+            loadContent();
+        });
+
+        // Initial load
+        langEnBtn.click(); // Default to English
+
+    </script>
+</body>
+</html>

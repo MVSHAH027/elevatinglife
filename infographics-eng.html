@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mumukshu Inspiration: A Visual Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Changed font */
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Default height */
+            max-height: 350px;
+        }
+        @media (min-width: 768px) { /* Medium devices and up */
+            .chart-container {
+                height: 350px; /* Taller on larger screens */
+                max-height: 400px;
+            }
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem; /* 12px */
+            padding: 1.5rem; /* 24px */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        .flow-step {
+            border: 2px solid #4f46e5; /* Indigo-600 */
+            padding: 1rem; /* 16px */
+            border-radius: 0.5rem; /* 8px */
+            text-align: center;
+            background-color: #e0e7ff; /* Indigo-100 */
+            color: #3730a3; /* Indigo-800 */
+            min-height: 100px; /* Ensure consistent height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .flow-arrow {
+            font-size: 2rem; /* 32px */
+            color: #4f46e5; /* Indigo-600 */
+            align-self: center;
+            margin: 0.5rem 0; /* 8px */
+        }
+         .sticky-nav { /* Navigation bar styling */
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .nav-link { /* Navigation link styling */
+            color: #4f46e5; /* Indigo-600 */
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem; /* 6px */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav-link:hover {
+            background-color: #e0e7ff; /* Indigo-100 */
+            color: #3730a3; /* Indigo-800 */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-100 via-indigo-50 to-purple-100 text-slate-800 leading-relaxed">
+
+    <main class="container mx-auto px-4 py-8">
+
+        <section id="intro" class="text-center mb-16 pt-12">
+            <h1 class="text-4xl sm:text-5xl font-bold text-indigo-700 mb-4">Mumukshu Inspiration</h1>
+            <p class="text-xl text-slate-700 mb-6">A visual guide for the seeker on the path of spiritual upliftment.</p>
+        </section>
+
+        <section id="effort" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-indigo-700 text-center mb-8">Effort and Restraint: The Foundation of Success</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="stat-card">
+                    <h3 class="text-2xl font-semibold text-amber-600 mb-3">The Importance of Intense Effort</h3>
+                    <p class="text-slate-600 mb-4">Attainment of restraint is impossible without intense effort. If someone appears to achieve restraint easily, it might be the fruit of intense effort from a previous life, as happened in the case of Jambuswami.</p>
+                    <div class="text-center text-5xl text-indigo-500 p-4">🏋️‍♂️</div>
+                    <p class="text-sm text-slate-500 text-center">Effort is the path to progress.</p>
+                </div>
+                <div class="stat-card">
+                     <h3 class="text-2xl font-semibold text-amber-600 mb-3">Essence (Sattva): The Value of Achievement</h3>
+                    <p class="text-slate-600 mb-4">Unwavering inner strength (sattva) is essential to face the difficulties and illusions on the spiritual path. This sattva is the true value of achievement. Your noble intentions will surely succeed.</p>
+                    <div class="text-center text-5xl text-green-500 p-4">🌟</div>
+                    <p class="text-sm text-slate-500 text-center">Firm determination leads to achieving goals.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="attachment" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-indigo-700 text-center mb-8">Renunciation of Attachment and Performance of Duty</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="stat-card">
+                    <h3 class="text-2xl font-semibold text-amber-600 mb-3">The Process of Letting Go of Attachment</h3>
+                    <p class="text-slate-600 mb-2">It is difficult to give up worldly attachments like attachment to a son. Intense renunciation and the effort to attain restraint weaken this attachment. Although this process is painful, its ultimate result is supremely blissful.</p>
+                    <p class="text-slate-600 font-semibold mb-4">"Painful process, blissful result."</p>
+                    <div class="chart-container h-64 sm:h-72">
+                        <canvas id="attachmentImpactChart"></canvas>
+                    </div>
+                    <p class="text-sm text-slate-500 mt-2 text-center">This chart is a conceptual representation of the impact of attachment and the potential outcome of renunciation.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-2xl font-semibold text-amber-600 mb-3">Supreme Duty Towards Parents</h3>
+                    <p class="text-slate-600 mb-4">It is the supreme duty of every child to give spiritual happiness to their parents who have bestowed infinite favors upon them, to save them from the sin of causing obstacles, and to ensure for them the accessibility of righteous conduct and a tradition of good destiny.</p>
+                     <div class="bg-indigo-100 p-4 rounded-lg text-center">
+                        <span class="text-5xl">👨‍👩‍👧‍👦</span>
+                        <p class="text-indigo-700 font-semibold mt-2">Repaying the debt to parents is the highest dharma.</p>
+                    </div>
+                    <p class="text-slate-600 mt-4">It is a matter of great fortune that you have progressed far in this direction of fulfilling your duty.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="reality" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-indigo-700 text-center mb-8">The True Nature of the World: A Dream-like Vision</h2>
+            <div class="stat-card max-w-3xl mx-auto">
+                <h3 class="text-2xl font-semibold text-amber-600 mb-3 text-center">The Symptom of Right Vision (Samyakdrishti)</h3>
+                <p class="text-slate-600 mb-4 text-center">The soul with right vision sees all events of home, business, society, etc., as similar to events in a 'dream'. These events include dialogue, happiness-sorrow, attachment-aversion, necessity, duty, etc., but they have no real meaning or effect.</p>
+                <blockquote class="border-l-4 border-indigo-500 pl-4 italic text-slate-700 my-6 text-center">
+                    "Just as everything seems illusory after waking from a dream, so does this world appear to the enlightened one."
+                </blockquote>
+                <p class="text-slate-600 text-center">Cultivating this vision and passing through worldly dealings appropriately, in a way that does not slander Dharma, is the essence. Worldly illusion and attachment are harmful to both self and others and cause wandering in lower states of existence.</p>
+            </div>
+        </section>
+
+        <section id="identity" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-indigo-700 text-center mb-8">'I' (Aham) and 'Mine' (Mam): Towards True Identity</h2>
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold text-green-600 mb-2">👍 Commendable 'I' and 'Mine' (Uplifting)</h3>
+                    <p class="text-sm text-slate-600 mb-1"><strong class="text-slate-700">Commendable 'I':</strong> In the form of self-awareness (awareness of one's pure soul-nature).</p>
+                    <p class="text-sm text-slate-600"><strong class="text-slate-700">Commendable 'Mine':</strong> In the form of attachment to the soul's qualities (attachment to one's own qualities like knowledge, vision, character).</p>
+                    <p class="mt-3 text-green-700 font-semibold">This uplifts the soul, causes progress.</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold text-red-600 mb-2">👎 Uncommendable 'I' and 'Mine' (Degrading)</h3>
+                    <p class="text-sm text-slate-600 mb-1"><strong class="text-slate-700">Uncommendable 'I':</strong> The sensation of 'I' in the body (considering the body as the soul).</p>
+                    <p class="text-sm text-slate-600"><strong class="text-slate-700">Uncommendable 'Mine':</strong> Attachment to relatives, property, etc. (attachment to external objects and relationships).</p>
+                    <p class="mt-3 text-red-700 font-semibold">This drowns the soul, deludes it.</p>
+                </div>
+            </div>
+            <div class="stat-card max-w-3xl mx-auto">
+                <h3 class="text-2xl font-semibold text-amber-600 mb-4 text-center">The Path of Spiritual Progress</h3>
+                <p class="text-slate-600 mb-4 text-center">The essence of Jinashasana (Jain teachings) is that the soul should abandon the uncommendable 'I-mine' and adopt the commendable 'I-mine'. The worldly environment constantly nourishes uncommendable feelings, while Jinashasana nourishes commendable feelings and leads the soul towards the ultimate state.</p>
+                <div class="chart-container h-72 sm:h-80">
+                    <canvas id="ahamMamaImpactChart"></canvas>
+                </div>
+                <p class="text-sm text-slate-500 mt-2 text-center">This chart shows the conceptual impact of the types of 'I' and 'Mine' on the soul.</p>
+            </div>
+        </section>
+
+        <section id="path" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-indigo-700 text-center mb-8">The Wonderful Path of Jinashasana and Our Duty</h2>
+            <div class="stat-card mb-8">
+                <h3 class="text-2xl font-semibold text-amber-600 mb-3 text-center">Jinashasana: A Divine System</h3>
+                <p class="text-slate-600 mb-6 text-center">Jinashasana has created such a wonderful system that constantly nourishes the commendable 'I-mine', keeps the soul conscious, and leads to the attainment of the ultimate state along with a tradition of good destiny. This system is fully equipped in every way; we only have to benefit from it and become fulfilled.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
+                    <div class="flow-step">Worldly Influence (Uncommendable Tendency)</div>
+                    <div class="flow-arrow hidden sm:block">➡️</div>
+                    <div class="flow-arrow block sm:hidden self-center">⬇️</div>
+                    <div class="flow-step">Guidance of Jinashasana (Nourishment of Commendable Tendency)</div>
+                     <div class="flow-arrow hidden sm:block">➡️</div>
+                     <div class="flow-arrow block sm:hidden self-center">⬇️</div>
+                    <div class="flow-step">Self-Awareness and Ultimate State</div>
+                </div>
+            </div>
+            <div class="stat-card text-center max-w-2xl mx-auto">
+                <h3 class="text-2xl font-semibold text-amber-600 mb-3">Rare Opportunity and Dedication to Duty</h3>
+                <p class="text-slate-600 mb-2">Even in this rare-maha-rare human birth obtained after an infinite time, if we remain engrossed in non-duty instead of duty, when will our soul be liberated?</p>
+                <p class="text-6xl font-bold text-indigo-600 my-6">💎</p>
+                <p class="text-slate-700 font-semibold text-lg">"The boat is right in front, it is near, and yet will we drown?"</p>
+                <p class="text-slate-600 mt-4">Having come so close to liberation, will we turn back towards the world? It is the call of the time to think seriously and prepare for our supreme duty. May you move forward with unwavering steps towards the goal of liberation, that is the wish.</p>
+            </div>
+        </section>
+
+        <footer class="text-center py-8 mt-12 border-t border-slate-300">
+            </footer>
+
+    </main>
+
+    <script>
+        // Utility function to wrap long labels for charts
+        function wrapLabel(str, maxWidth) {
+            if (typeof str !== 'string' || str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let currentLine = '';
+            const lines = [];
+            for (const word of words) {
+                if ((currentLine + word).length <= maxWidth) {
+                    currentLine += (currentLine ? ' ' : '') + word;
+                } else {
+                    if (currentLine) lines.push(currentLine);
+                    currentLine = word;
+                }
+            }
+            if (currentLine) lines.push(currentLine);
+            return lines.length > 0 ? lines : [str]; // Ensure it returns at least the original string if no split occurs
+        }
+        
+        // Callback function for chart tooltips to display full label
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) { // If label was wrapped into an array
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        // Chart 1: Attachment Impact Chart (Doughnut Chart)
+        const attachmentCtx = document.getElementById('attachmentImpactChart').getContext('2d');
+        new Chart(attachmentCtx, {
+            type: 'doughnut',
+            data: {
+                labels: [wrapLabel('Life entangled in attachment (conceptual %)', 20), wrapLabel('Peace after renunciation (conceptual %)',20)],
+                datasets: [{
+                    label: 'Impact of Attachment',
+                    data: [65, 35], // Illustrative data
+                    backgroundColor: ['#ef4444', '#22c55e'], // Red-500, Green-500
+                    borderColor: ['#f87171', '#4ade80'], // Red-400, Green-400
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Impact of Attachment and Result of Renunciation',
+                        font: { size: 16, family: "'Inter', sans-serif" },
+                        color: '#3730a3' // Indigo-800
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                             font: { family: "'Inter', sans-serif" },
+                             color: '#334155' // Slate-700
+                        }
+                    },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback },
+                        bodyFont: { family: "'Inter', sans-serif" },
+                        titleFont: { family: "'Inter', sans-serif" }
+                    }
+                }
+            }
+        });
+
+        // Chart 2: 'I' and 'Mine' Impact Chart (Bar Chart)
+        const ahamMamaCtx = document.getElementById('ahamMamaImpactChart').getContext('2d');
+        new Chart(ahamMamaCtx, {
+            type: 'bar',
+            data: {
+                labels: [wrapLabel('Uncommendable I-Mine', 20), wrapLabel('Commendable I-Mine', 20)],
+                datasets: [{
+                    label: 'Spiritual Progress (Conceptual)',
+                    data: [-60, 80], // Illustrative data: Negative for downfall, Positive for upliftment
+                    backgroundColor: (context) => {
+                        const value = context.raw;
+                        return value < 0 ? '#ef4444' : '#22c55e'; // Red-500 for negative, Green-500 for positive
+                    },
+                    borderColor: (context) => {
+                        const value = context.raw;
+                        return value < 0 ? '#f87171' : '#4ade80'; // Red-400, Green-400
+                    },
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y', // Horizontal bar chart
+                scales: {
+                    x: {
+                        beginAtZero: false, // Allow negative values to show direction from center
+                        title: { 
+                            display: true, 
+                            text: 'Spiritual Impact (Conceptual Measure)',
+                            font: { family: "'Inter', sans-serif" },
+                            color: '#334155' // Slate-700
+                        },
+                        ticks: { 
+                            font: { family: "'Inter', sans-serif" },
+                            color: '#475569' // Slate-600
+                        }
+                    },
+                    y: {
+                       ticks: { 
+                           font: { family: "'Inter', sans-serif", size: 12 }, // Adjusted for better fit
+                           color: '#475569' // Slate-600
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "'I' and 'Mine's Impact on the Soul",
+                        font: { size: 16, family: "'Inter', sans-serif" },
+                        color: '#3730a3' // Indigo-800
+                    },
+                    legend: {
+                        display: false // Label in dataset is clear enough
+                    },
+                    tooltip: {
+                        callbacks: {
+                             title: tooltipTitleCallback,
+                             label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    // Provide more descriptive tooltip based on positive/negative value
+                                    label += context.parsed.x > 0 ? `Upliftment by ${context.parsed.x}` : `Downfall by ${Math.abs(context.parsed.x)}`;
+                                }
+                                return label;
+                            }
+                        },
+                        bodyFont: { family: "'Inter', sans-serif" },
+                        titleFont: { family: "'Inter', sans-serif" }
+                    }
+                }
+            }
+        });
+
+        // Smooth scroll for any anchor links (if navigation were added)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

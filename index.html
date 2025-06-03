@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Elevating Life - Spiritual Inspiration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+Gujarati:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            overscroll-behavior-y: contain; /* Prevents pull-to-refresh on mobile */
+        }
+        .gujarati {
+            font-family: 'Noto Sans Gujarati', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #bae6fd 50%, #7dd3fc 75%, #38bdf8 100%); /* Sky blue gradient */
+        }
+        .card-bg {
+            background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent white */
+            backdrop-filter: blur(5px);
+        }
+        .lang-button {
+            transition: all 0.3s ease;
+        }
+        .lang-button.active {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="gradient-bg text-slate-800 min-h-screen flex flex-col">
+
+    <header class="py-6 px-4 shadow-lg bg-white/70 backdrop-blur-md sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <h1 id="main-title-text" class="text-3xl sm:text-4xl font-bold text-sky-700 mb-4 sm:mb-0 text-center sm:text-left">Elevating Life</h1>
+            <div id="lang-buttons" class="flex space-x-3">
+                <button id="lang-en-btn" class="lang-button px-5 py-2 bg-sky-500 text-white font-semibold rounded-lg shadow-md hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-opacity-75">English</button>
+                <button id="lang-gu-btn" class="lang-button gujarati px-5 py-2 bg-amber-500 text-white font-semibold rounded-lg shadow-md hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-75">ગુજરાતી</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <p id="intro-text" class="text-lg text-center text-slate-700 mb-10 leading-relaxed"></p>
+
+        <div id="links-container" class="space-y-6">
+            </div>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-200 py-8 px-4 text-center">
+        <div class="container mx-auto">
+            <p class="mb-2">
+                <span id="contact-name-text" class="font-semibold"></span>:
+                <span id="contact-whatsapp-text"></span>: <a href="https://wa.me/919429926447" class="hover:text-sky-400 underline">94299 26447</a>
+                (<span id="contact-location-text"></span>)
+            </p>
+            <p id="footer-brand-text" class="text-sky-400 font-bold text-xl"></p>
+        </div>
+    </footer>
+
+    <script>
+        // Content data for different languages
+        const content = {
+            en: {
+                pageTitle: "Elevating Life - Spiritual Inspiration",
+                mainTitle: "Elevating Life (Mumukshu Prerna 1, 2)", // Updated English main title
+                intro: "A curated collection of resources designed for spiritual upliftment and profound self-realization. Dive into enlightening podcasts, insightful infographics, and interactive quizzes to deepen your spiritual understanding and journey.",
+                links: [
+                    {
+                        title: "Podcast: Mumukshu Prerna - The Distinction of 'Aham' (I-ness) and 'Mam' (Mineness)",
+                        description: "Explore the subtle yet crucial differences between the true Self and ego-driven attachments. This podcast offers deep insights for seekers on the path of self-discovery.",
+                        url: "https://youtu.be/nZfFUZdC5oI",
+                        linkLabel: "Listen to Podcast"
+                    },
+                    {
+                        title: "Mumukshu Prerna 1 & 2 - Inspirations for the Seeker",
+                        description: "Continue your spiritual journey with these foundational teachings. These inspirations are designed to guide and motivate seekers towards inner peace and enlightenment.",
+                        url: "https://youtu.be/s_6TV7or1lg",
+                        linkLabel: "Watch Inspirations"
+                    },
+                    {
+                        title: "Mumukshu Prerna Infographics - Visual Spiritual Guide",
+                        description: "A beautifully designed visual guide for those embarking on the path of spiritual progress. Complex spiritual concepts are made simple and accessible through engaging infographics.",
+                        url: "infographics-eng.html", // Updated URL for English infographics
+                        linkLabel: "View Infographics"
+                    },
+                    {
+                        title: "Interactive Tutorial Quiz: Chapters 9 and 10",
+                        description: "Test and reinforce your understanding of key spiritual concepts from Chapters 9 and 10. This interactive quiz provides a dynamic way to learn and reflect.",
+                        url: "quiz.html",
+                        linkLabel: "Take the Quiz"
+                    },
+                    {
+                        title: "A Devotional Prayer Song to My Lord",
+                        description: "Immerse yourself in this heartfelt prayer song. A beautiful composition to foster a deeper connection with the divine and experience spiritual solace.",
+                        url: "https://youtu.be/QxzaUGLHbFE",
+                        linkLabel: "Listen to Prayer Song"
+                    }
+                ],
+                contactName: "Manish V. Shah",
+                contactWhatsapp: "WhatsApp",
+                contactLocation: "Vadodara",
+                footerBrand: "" // Removed "elevating-life"
+            },
+            gu: {
+                pageTitle: "જીવન ઉત્કર્ષ - આધ્યાત્મિક પ્રેરણા",
+                mainTitle: "જીવન ઉત્કર્ષ (મુમુક્ષુ પ્રેરણા ૧, ૨)", // Updated Gujarati main title
+                intro: "આત્મિક ઉન્નતિ અને ગહન આત્મ-સાક્ષાત્કાર માટે રચાયેલ સંસાધનોનો ક્યુરેટેડ સંગ્રહ. તમારી આધ્યાત્મિક સમજ અને યાત્રાને ઊંડી બનાવવા માટે જ્ઞાનવર્ધક પોડકાસ્ટ, આંતરદૃષ્ટિપૂર્ણ ઇન્ફોગ્રાફિક્સ અને ઇન્ટરેક્ટિવ ક્વિઝમાં ડૂબકી લગાવો.",
+                links: [
+                    {
+                        title: "પોડકાસ્ટ : મુમુક્ષુ પ્રેરણા : અહં અને મમ નો ભેદ",
+                        description: "આત્મ-શોધના પથ પર સાધકો માટે ગહન આંતરદૃષ્ટિ પ્રદાન કરતું, સાચા સ્વ અને અહંકાર-પ્રેરિત આસક્તિઓ વચ્ચેના સૂક્ષ્મ છતાં મહત્વપૂર્ણ તફાવતોનું અન્વેષણ કરો.",
+                        url: "https://youtu.be/nZfFUZdC5oI",
+                        linkLabel: "પોડકાસ્ટ સાંભળો"
+                    },
+                    {
+                        title: "મુમુક્ષુ પ્રેરણા ૧ & ૨ - સાધક માટે પ્રેરણાઓ",
+                        description: "આ મૂળભૂત ઉપદેશો સાથે તમારી આધ્યાત્મિક યાત્રા ચાલુ રાખો. આ પ્રેરણાઓ સાધકોને આંતરિક શાંતિ અને જ્ઞાન તરફ માર્ગદર્શન અને પ્રોત્સાહન આપવા માટે રચાયેલ છે.",
+                        url: "https://youtu.be/s_6TV7or1lg",
+                        linkLabel: "પ્રેરણાઓ જુઓ"
+                    },
+                    {
+                        title: "મુમુક્ષુ પ્રેરણા ઇન્ફોગ્રાફિક્સ - દ્રશ્ય આધ્યાત્મિક માર્ગદર્શિકા",
+                        description: "આધ્યાત્મિક પ્રગતિના પંથે પ્રયાણ કરનારાઓ માટે એક સુંદર રીતે રચાયેલ દ્રશ્ય માર્ગદર્શિકા. જટિલ આધ્યાત્મિક ખ્યાલોને આકર્ષક ઇન્ફોગ્રાફિક્સ દ્વારા સરળ અને સુલભ બનાવવામાં આવ્યા છે.",
+                        url: "infographics.html", // Gujarati infographics link remains the same
+                        linkLabel: "ઇન્ફોગ્રાફિક્સ જુઓ"
+                    },
+                    {
+                        title: "ઇન્ટરેક્ટિવ ટ્યુટોરિયલ ક્વિઝ: પ્રકરણ ૯ અને ૧૦",
+                        description: "પ્રકરણ ૯ અને ૧૦ માંથી મુખ્ય આધ્યાત્મિક ખ્યાલોની તમારી સમજને ચકાસો અને મજબૂત કરો. આ ઇન્ટરેક્ટિવ ક્વિઝ શીખવા અને પ્રતિબિંબિત કરવાની ગતિશીલ રીત પ્રદાન કરે છે.",
+                        url: "quiz.html",
+                        linkLabel: "ક્વિઝ લો"
+                    },
+                    {
+                        title: "મારા પ્રભુને એક ભક્તિમય પ્રાર્થના ગીત",
+                        description: "આ હૃદયસ્પર્શી પ્રાર્થના ગીતમાં તમારી જાતને લીન કરી દો. પરમાત્મા સાથે ગાઢ જોડાણ કેળવવા અને આધ્યાત્મિક શાંતિનો અનુભવ કરવા માટે એક સુંદર રચના.",
+                        url: "https://youtu.be/QxzaUGLHbFE",
+                        linkLabel: "પ્રાર્થના ગીત સાંભળો"
+                    }
+                ],
+                contactName: "મનીષ વી. શાહ",
+                contactWhatsapp: "વોટ્સએપ",
+                contactLocation: "વડોદરા",
+                footerBrand: "" // Removed "elevating-life"
+            }
+        };
+
+        // DOM Elements
+        const pageTitleEl = document.getElementById('page-title');
+        const mainTitleEl = document.getElementById('main-title-text');
+        const introTextEl = document.getElementById('intro-text');
+        const linksContainerEl = document.getElementById('links-container');
+        const contactNameEl = document.getElementById('contact-name-text');
+        const contactWhatsappEl = document.getElementById('contact-whatsapp-text');
+        const contactLocationEl = document.getElementById('contact-location-text');
+        const footerBrandEl = document.getElementById('footer-brand-text');
+        const langEnBtn = document.getElementById('lang-en-btn');
+        const langGuBtn = document.getElementById('lang-gu-btn');
+
+        // Function to update content based on selected language
+        function updateContent(language) {
+            const currentContent = content[language];
+
+            // Update page title
+            pageTitleEl.textContent = currentContent.pageTitle;
+
+            // Update main title
+            mainTitleEl.innerHTML = currentContent.mainTitle; // Use innerHTML to render potential HTML entities if any
+            mainTitleEl.className = `text-3xl sm:text-4xl font-bold mb-4 sm:mb-0 text-center sm:text-left ${language === 'gu' ? 'gujarati text-amber-700' : 'text-sky-700'}`;
+
+
+            // Update intro text
+            introTextEl.textContent = currentContent.intro;
+            introTextEl.className = `text-lg text-center mb-10 leading-relaxed ${language === 'gu' ? 'gujarati text-slate-700' : 'text-slate-700'}`;
+
+            // Clear previous links
+            linksContainerEl.innerHTML = '';
+
+            // Populate links
+            currentContent.links.forEach(link => {
+                const linkCard = `
+                    <div class="card-bg p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out transform hover:-translate-y-1">
+                        <h2 class="text-xl sm:text-2xl font-semibold mb-2 ${language === 'gu' ? 'gujarati text-amber-700' : 'text-sky-700'}">${link.title}</h2>
+                        <p class="text-slate-600 mb-4 text-sm sm:text-base leading-relaxed ${language === 'gu' ? 'gujarati' : ''}">${link.description}</p>
+                        <a href="${link.url}" target="_blank" rel="noopener noreferrer"
+                           class="inline-block px-6 py-3 font-medium text-white rounded-lg shadow-md transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-opacity-75 ${language === 'gu' ? 'gujarati bg-amber-500 hover:bg-amber-600 focus:ring-amber-400' : 'bg-sky-500 hover:bg-sky-600 focus:ring-sky-400'}">
+                            ${link.linkLabel}
+                        </a>
+                    </div>
+                `;
+                linksContainerEl.innerHTML += linkCard;
+            });
+
+            // Update contact info
+            contactNameEl.textContent = currentContent.contactName;
+            contactWhatsappEl.textContent = currentContent.contactWhatsapp;
+            contactLocationEl.textContent = currentContent.contactLocation;
+            footerBrandEl.textContent = currentContent.footerBrand; // This will now be an empty string
+
+            [contactNameEl, contactWhatsappEl, contactLocationEl].forEach(el => {
+                 el.className = language === 'gu' ? 'gujarati' : '';
+            });
+             footerBrandEl.className = `font-bold text-xl ${language === 'gu' ? 'gujarati text-amber-400' : 'text-sky-400'}`;
+             // If footerBrand is empty, we can hide the p tag or ensure it doesn't take up space if needed
+             if (currentContent.footerBrand === "") {
+                footerBrandEl.style.display = 'none'; // Hide the element if the brand text is empty
+             } else {
+                footerBrandEl.style.display = ''; // Show it if there's text
+             }
+
+
+            // Update active button style
+            if (language === 'en') {
+                langEnBtn.classList.add('active', 'bg-sky-700');
+                langEnBtn.classList.remove('bg-sky-500');
+                langGuBtn.classList.remove('active', 'bg-amber-700');
+                langGuBtn.classList.add('bg-amber-500');
+            } else {
+                langGuBtn.classList.add('active', 'bg-amber-700');
+                langGuBtn.classList.remove('bg-amber-500');
+                langEnBtn.classList.remove('active', 'bg-sky-700');
+                langEnBtn.classList.add('bg-sky-500');
+            }
+
+            // Store language preference
+            localStorage.setItem('preferredLanguage', language);
+        }
+
+        // Event listeners for language buttons
+        langEnBtn.addEventListener('click', () => updateContent('en'));
+        langGuBtn.addEventListener('click', () => updateContent('gu'));
+
+        // Initial content load
+        const preferredLanguage = localStorage.getItem('preferredLanguage') || 'gu'; // Default to Gujarati
+        updateContent(preferredLanguage);
+
+    </script>
+</body>
+</html>
